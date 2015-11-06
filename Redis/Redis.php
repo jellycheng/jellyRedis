@@ -98,7 +98,7 @@ class Redis {
 			//有参数
 			$args[0] = static::getKeyPrefix($groupName) . $args[0];
 		}
-		var_dump($args);exit;
+		var_dump($args);
 		switch ($i)
 		{
 			case 0:
