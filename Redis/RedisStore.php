@@ -3,7 +3,7 @@
 namespace Ananzu\Redis;
 
 /**
-* 
+* 依赖redis.so
 */
 class RedisStore
 {
@@ -22,8 +22,8 @@ class RedisStore
 		$this->config = $config;
 		$host = (isset($config['host']) && $config['host'])?$config['host']:'127.0.0.1';
 		$port = (isset($config['port']) && $config['port'])?$config['port']:'6379';
-		$this->redis  = new Redis;
-        if (!$this->redis->connect($host, $port)) {
+		$this->redis  = new \Redis;
+        if (!is_object($this->redis) || !$this->redis->connect($host, $port)) {
 
         	//上报监控并写log，但绝对不能跑异常，否则其它业务无法进行 todo
 
@@ -35,10 +35,7 @@ class RedisStore
 
 
 	public function __call($method, $args) {
-		echo $method;
-		var_dump($param);
-		switch (count($args))
-		{
+		switch (count($args)) {
 			case 0:
 				return $this->redis->$method();
 
