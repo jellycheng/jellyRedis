@@ -9,3 +9,8 @@ var_dump($res);
 $res = \Ananzu\Redis\Redis::get("pay", "key1");
 var_dump($res); //val1
 
+$res = \Ananzu\Redis\Redis::set("auth", "key1", "你好auth db1");
+var_dump($res); 
+
+$res = \Ananzu\Redis\Redis::get("auth", "key1");
+var_dump($res); 

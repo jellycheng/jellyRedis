@@ -96,7 +96,7 @@ class Redis {
 		$i = count($args);
 		if($i>0) {
 			//有参数
-			$args[0] .= static::getKeyPrefix($groupName);
+			$args[0] = static::getKeyPrefix($groupName) . $args[0];
 		}
 		var_dump($args);exit;
 		switch ($i)
