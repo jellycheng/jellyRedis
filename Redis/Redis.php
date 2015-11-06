@@ -27,49 +27,79 @@ class Redis {
 		return static::$config;
 	}
 
-
-	protected static function getInstance($group) {
-		
-		if(isset(static::$redisInstance[$group]) && is_object(static::$redisInstance[$group])) {
-			return static::$redisInstance[$group];
-		}
+	//获取指定组的redis对象
+	public static function getInstance($group) {
 
 		if(empty(static::$config)) {
 			static::$config = include __DIR__ . '/config.demo.php';
 		}
 
 		if(!isset(static::$config[$group])) {
-			return new emptyObj();
+			return new EmptyObj();
 		}
+
+		$config = static::$config[$group];
 		$host = (isset($config['host']) && $config['host'])?$config['host']:'127.0.0.1';
 		$port = (isset($config['port']) && $config['port'])?$config['port']:'6379';
-		$this->lastDatabase = (isset($config['database']) && $config['database'])?$config['database']:0;
-		if(isset($config['prefix'])) {
-			$this->prefixKey = $config['prefix'];
+		$database = (isset($config['database']) && $config['database'])?$config['database']:0;
+		
+		$tmpKey = md5($host.$port);
+		if(isset(static::$redisInstance[$tmpKey]) && is_object(static::$redisInstance[$tmpKey])) {
+			echo "aaa===1";
+			if($database!=static::$redisInstance[$tmpKey]->getLastDatabase()) {
+				$b = static::$redisInstance[$tmpKey]->select($database);
+				if($b) {
+					echo "ok1";
+					static::$redisInstance[$tmpKey]->setLastDatabase($database);
+				}
+			}
+			return static::$redisInstance[$tmpKey];
 		}
-		$tmpKey = $host.$port;
-	
-		static::$redisInstance[$group] = new RedisStore(static::$config[$group]);
-		return static::$redisInstance[$group];
-
+		echo "bbb===2";
+		static::$redisInstance[$tmpKey] = new RedisStore(static::$config[$group]);
+		if($database!=static::$redisInstance[$tmpKey]->getLastDatabase()) {
+			$b = static::$redisInstance[$tmpKey]->select($database);
+			if($b) {
+				echo "ok22";
+				static::$redisInstance[$tmpKey]->setLastDatabase($database);
+			}
+		}
+		return static::$redisInstance[$tmpKey];
 
 	}
 
+
+	protected static function getKeyPrefix($group) {
+		if(!isset(static::$config[$group])) {
+			return '';
+		}
+		$config = static::$config[$group];
+		if(isset($config['prefix'])) {
+			return $config['prefix'];
+		}
+		return '';
+	}
+
+
 	
 
-
+	//$res = \Ananzu\Redis\Redis::set("group", "key1", "val1");  只支持带key的命令哦，不支持MONITOR，select，FLUSHALL，SHUTDOWN等命令
 	public static function __callStatic($method, $args)
 	{
 		$res = '';
 		if(!count($args)) {
 			return $res;
 		}
-		echo $method;
-		var_dump( $args);
-		$instance = static::getInstance($args[0]);
+		$groupName = $args[0];
+		$instance = static::getInstance($groupName);
 		array_shift($args);
+		$i = count($args);
+		if($i>0) {
+			//有参数
+			$args[0] .= static::getKeyPrefix($groupName);
+		}
 		var_dump($args);exit;
-		switch (count($args))
+		switch ($i)
 		{
 			case 0:
 				return $instance->$method();

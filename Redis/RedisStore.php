@@ -10,12 +10,11 @@ class RedisStore
 	protected $config;
 	protected $redis; //redis对象
 
+	protected $lastDatabase = 0;
+
 	/**
 	'host'=>'10.59.72.31',
 	'port'=>'6379',
-	'database'=>0,
-	'prefix'=>'aaz:pay:',
-	'desc'=>'支付模块业务'
 	*/
 	function __construct($config)
 	{
@@ -28,8 +27,24 @@ class RedisStore
         	//上报监控并写log，但绝对不能跑异常，否则其它业务无法进行 todo
 
         	//产生空对象，保证业务正常,并注意空对像的所有方法全是返回空,表示redis中没有存数据
-        	$this->redis = new emptyObj();
+        	$this->redis = new EmptyObj();
         }
+
+	}
+
+	public function setLastDatabase($db) {
+		$this->lastDatabase = $db;
+
+	}
+
+	public function getLastDatabase() {
+		$this->lastDatabase;
+
+	}
+	
+	//切换db
+	public function select($db) {
+		return $this->redis->select($db);
 
 	}
 
