@@ -45,22 +45,20 @@ class Redis {
 		
 		$tmpKey = md5($host.$port);
 		if(isset(static::$redisInstance[$tmpKey]) && is_object(static::$redisInstance[$tmpKey])) {
-			echo "aaa===1";
+		
 			if($database!=static::$redisInstance[$tmpKey]->getLastDatabase()) {
 				$b = static::$redisInstance[$tmpKey]->select($database);
 				if($b) {
-					echo "ok1";
 					static::$redisInstance[$tmpKey]->setLastDatabase($database);
 				}
 			}
 			return static::$redisInstance[$tmpKey];
 		}
-		echo "bbb===2";
+		
 		static::$redisInstance[$tmpKey] = new RedisStore(static::$config[$group]);
 		if($database!=static::$redisInstance[$tmpKey]->getLastDatabase()) {
 			$b = static::$redisInstance[$tmpKey]->select($database);
 			if($b) {
-				echo "ok22";
 				static::$redisInstance[$tmpKey]->setLastDatabase($database);
 			}
 		}
@@ -98,7 +96,7 @@ class Redis {
 			//有参数
 			$args[0] = static::getKeyPrefix($groupName) . $args[0];
 		}
-		var_dump($args);
+		
 		switch ($i)
 		{
 			case 0:
