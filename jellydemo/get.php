@@ -1,6 +1,6 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
-require __DIR__ . '/vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 
 $config = array(
