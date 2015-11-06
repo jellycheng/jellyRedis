@@ -1,0 +1,20 @@
+{
+    "name": "ananzu/redis",
+    "description": "",
+    "keywords": [],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "Ananzu\\Redis\\": "Redis/"
+        },
+        "files": [
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {}
+    },
+    "suggest": {}
+}
