@@ -81,7 +81,7 @@ class Redis {
 
 	
 
-	//$res = \Ananzu\Redis\Redis::set("group", "key1", "val1");  只支持带key的命令哦，不支持MONITOR，select，FLUSHALL，SHUTDOWN等命令
+	//$res = \Ananzu\Redis\Redis::set("group", "key1", "val1");  只支持带key的命令或者不带参数的命令哦，不支持的KEYS ,BRPOPLPUSH，smove，zinterstore，echo,auth,PUBLISH 等命令
 	public static function __callStatic($method, $args)
 	{
 		$res = '';

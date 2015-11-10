@@ -36,21 +36,21 @@ return array(
 			'user'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
-					'database'=>1,
+					'database'=>2,
 					'prefix'=>'aaz:user:',
 					'desc'=>'用户信息模块'
 			),
 			'house'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
-					'database'=>1,
+					'database'=>3,
 					'prefix'=>'aaz:house:',
 					'desc'=>'房源模块'
 			),
 			'global'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
-					'database'=>1,
+					'database'=>4,
 					'prefix'=>'aaz:global:',
 					'desc'=>'全局通用配置模块，各个仓库共用'
 			),
