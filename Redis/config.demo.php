@@ -1,5 +1,10 @@
 <?php
 /**
+ * Author: jellycheng <42282367@qq.com>
+ * Date: 2015/11/11
+ * Desc: 配置参考demo
+ */
+/**
 	array(
 		'业务模块名'=>array(
 					'host'=>'redis服务host，默认127.0.0.1',
@@ -26,12 +31,19 @@ return array(
 					'prefix'=>'aaz:pay:',
 					'desc'=>'支付模块业务'
 			),
-			'auth'=>array(
+			'pcauth'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>1,
 					'prefix'=>'aaz:auth:',
-					'desc'=>'登录认证模块'
+					'desc'=>'pc登录认证模块'
+			),
+			'wirelessauth'=>array(
+					'host'=>'10.59.72.31',
+					'port'=>'6379',
+					'database'=>1,
+					'prefix'=>'aaz:auth:',
+					'desc'=>'无线app及h5登录认证模块'
 			),
 			'user'=>array(
 					'host'=>'10.59.72.31',

@@ -1,6 +1,10 @@
 <?php
 namespace Ananzu\Redis;
-
+/**
+ * Author: jellycheng <42282367@qq.com>
+ * Date: 2015/11/11
+ * Desc: 配置参考demo
+ */
 class Redis {
 
 	protected static $redisInstance = array();

@@ -1,10 +1,12 @@
 <?php
-
 namespace Ananzu\Redis;
-
 /**
-* 依赖redis.so
-*/
+ * Author: jellycheng <42282367@qq.com>
+ * Date: 2015/11/11
+ * Desc: 配置参考demo
+ * 依赖redis.so
+ */
+
 class RedisStore
 {
 	protected $config;
@@ -13,8 +15,8 @@ class RedisStore
 	protected $lastDatabase = 0;
 
 	/**
-	'host'=>'10.59.72.31',
-	'port'=>'6379',
+	 * 'host'=>'10.59.72.31',
+	 * 'port'=>'6379',
 	*/
 	function __construct($config)
 	{
