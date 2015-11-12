@@ -10,8 +10,10 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 $i = mt_rand(100, 999);
 //开启事物
 $multi = \Ananzu\Redis\Redis::multi('user');
-$multi->set('abc', '123-' . $i);
-$multi->set('xyz', '1234xyz-' . $i);
+//获取组的key前缀
+$prefix =\Ananzu\Redis\Redis::getInstance('user')->getKeyPrefix('user');
+$multi->set($prefix.'abc', '123-' . $i);
+$multi->set($prefix.'xyz', '1234xyz-' . $i);
 $multi->exec();
 
 echo "事物演示完毕";

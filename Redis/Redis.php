@@ -11,6 +11,8 @@ class Redis {
 	protected static $config = array();
 
 	/**
+     * 配置redis
+     *
 		\Ananzu\Redis\Redis::setRedisConfig(array(
 			'local'=>array(
 					'host'=>'10.59.72.31',
@@ -27,15 +29,24 @@ class Redis {
 		static::$config = array_merge(static::$config, $config);
 	}
 
-	public static function getRedisConfig() {
+    /**
+     * 获取redis配置
+     * @return array
+     */
+    public static function getRedisConfig() {
 		return static::$config;
 	}
+
+    public static function loadRedisConfig() {
+
+        return include __DIR__ . '/config.demo.php';
+    }
 
 	//获取指定组的redis对象
 	public static function getInstance($group) {
 
 		if(empty(static::$config)) {
-			static::$config = include __DIR__ . '/config.demo.php';
+			static::$config = static::loadRedisConfig();
 		}
 
 		if(!isset(static::$config[$group])) {
@@ -70,8 +81,19 @@ class Redis {
 
 	}
 
+    /**
+     * 根据业务组名获取配置key前缀
+     * @param $group
+     * @return string
+     */
+    public static function getKeyPrefix($group) {
+        if(empty(static::$config)) {
+            static::$config = static::loadRedisConfig();
+        }
+        return static::_getKeyPrefix($group);
+    }
 
-	protected static function getKeyPrefix($group) {
+	protected static function _getKeyPrefix($group) {
 		if(!isset(static::$config[$group])) {
 			return '';
 		}
@@ -83,11 +105,12 @@ class Redis {
 	}
 
 
-	
-
-	//$res = \Ananzu\Redis\Redis::set("group", "key1", "val1");  只支持带key的命令或者不带参数的命令哦，不支持的KEYS ,BRPOPLPUSH，smove，zinterstore，echo,auth,PUBLISH 等命令
-	public static function __callStatic($method, $args)
-	{
+	/**
+     * $res = \Ananzu\Redis\Redis::命令("group组名", "key名", "val值");
+     * 只支持带key的命令或者不带参数的命令哦，
+     * 不支持的KEYS ,BRPOPLPUSH，smove，zinterstore，echo,auth,PUBLISH 等命令
+     */
+	public static function __callStatic($method, $args) {
 		$res = '';
 		if(!count($args)) {
 			return $res;
@@ -98,11 +121,10 @@ class Redis {
 		$i = count($args);
 		if($i>0) {
 			//有参数
-			$args[0] = static::getKeyPrefix($groupName) . $args[0];
+			$args[0] = static::_getKeyPrefix($groupName) . $args[0];
 		}
 		
-		switch ($i)
-		{
+		switch ($i) {
 			case 0:
 				return $instance->$method();
 
@@ -121,7 +143,6 @@ class Redis {
 			default:
 				return call_user_func_array(array($instance, $method), $args);
 		}
-
 
 		return $res;
 	}
