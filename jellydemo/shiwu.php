@@ -11,7 +11,7 @@ $i = mt_rand(100, 999);
 //开启事物
 $multi = \Ananzu\Redis\Redis::multi('user');
 //获取组的key前缀
-$prefix =\Ananzu\Redis\Redis::getInstance('user')->getKeyPrefix('user');
+$prefix =\Ananzu\Redis\Redis::getKeyPrefix('user');
 $multi->set($prefix.'abc', '123-' . $i);
 $multi->set($prefix.'xyz', '1234xyz-' . $i);
 $multi->exec();
