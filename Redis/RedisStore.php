@@ -46,8 +46,12 @@ class RedisStore
 	
 	//切换db
 	public function select($db) {
-		return $this->redis->select($db);
 
+		$b = $this->redis->select($db);
+		if($b) {
+			$this->setLastDatabase($db);
+		}
+		return $b;
 	}
 
 

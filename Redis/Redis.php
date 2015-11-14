@@ -63,9 +63,6 @@ class Redis {
 		
 			if($database!=static::$redisInstance[$tmpKey]->getLastDatabase()) {
 				$b = static::$redisInstance[$tmpKey]->select($database);
-				if($b) {
-					static::$redisInstance[$tmpKey]->setLastDatabase($database);
-				}
 			}
 			return static::$redisInstance[$tmpKey];
 		}
@@ -73,9 +70,6 @@ class Redis {
 		static::$redisInstance[$tmpKey] = new RedisStore(static::$config[$group]);
 		if($database!=static::$redisInstance[$tmpKey]->getLastDatabase()) {
 			$b = static::$redisInstance[$tmpKey]->select($database);
-			if($b) {
-				static::$redisInstance[$tmpKey]->setLastDatabase($database);
-			}
 		}
 		return static::$redisInstance[$tmpKey];
 
