@@ -143,5 +143,19 @@ return array(
 					'prefix'=>'aaz:h5:',
 					'desc'=>'h5触屏网站独有业务模块'
 			),
+			'misc_queue'         => array(
+				'host'     => env('DB_REDIS_DEFAULT_HOST'),
+				'port'     => env('DB_REDIS_DEFAULT_PORT', '6379'),
+				'database' => 4,
+				'prefix'   => 'aaz:queue:misc:',
+				'desc'     => '不好归类通通放这个模块,队列业务'
+			),
+			'house_queue'        => array(
+				'host'     => env('DB_REDIS_DEFAULT_HOST'),
+				'port'     => env('DB_REDIS_DEFAULT_PORT', '6379'),
+				'database' => 4,
+				'prefix'   => 'aaz:queue:house:',
+				'desc'     => '房源模块,队列业务'
+			),
 
 );
