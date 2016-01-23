@@ -40,8 +40,7 @@ class RedisStore
 	}
 
 	public function getLastDatabase() {
-		$this->lastDatabase;
-
+		return $this->lastDatabase;
 	}
 	
 	//切换db
