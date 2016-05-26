@@ -1,5 +1,5 @@
 <?php
-namespace Ananzu\Redis;
+namespace JellyRedis\Redis;
 /**
  * Author: jellycheng <42282367@qq.com>
  * Date: 2015/11/11

@@ -17,7 +17,7 @@
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>0,
-					'prefix'=>'aaz:pay:',
+					'prefix'=>'jelly:pay:',
 			),
 
 	);
@@ -28,84 +28,84 @@ return array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>0,
-					'prefix'=>'aaz:pay:',
+					'prefix'=>'jelly:pay:',
 					'desc'=>'支付模块业务'
 			),
 			'pcauth'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>1,
-					'prefix'=>'aaz:auth:',
+					'prefix'=>'jelly:auth:',
 					'desc'=>'pc登录认证模块'
 			),
 			'wirelessauth'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>1,
-					'prefix'=>'aaz:auth:',
+					'prefix'=>'jelly:auth:',
 					'desc'=>'无线app及h5登录认证模块'
 			),
 			'user'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>2,
-					'prefix'=>'aaz:user:',
+					'prefix'=>'jelly:user:',
 					'desc'=>'用户信息模块'
 			),
 			'house'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>3,
-					'prefix'=>'aaz:house:',
+					'prefix'=>'jelly:house:',
 					'desc'=>'房源模块'
 			),
 			'global'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>4,
-					'prefix'=>'aaz:global:',
+					'prefix'=>'jelly:global:',
 					'desc'=>'全局通用配置模块，各个仓库共用'
 			),
 			'misc'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>1,
-					'prefix'=>'aaz:global:',
+					'prefix'=>'jelly:global:',
 					'desc'=>'不好归类通通放这个模块'
 			),
 			'weixin'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>1,
-					'prefix'=>'aaz:wx:',
+					'prefix'=>'jelly:wx:',
 					'desc'=>'微信业务模块'
 			),
 			'admin'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>1,
-					'prefix'=>'aaz:admin:',
+					'prefix'=>'jelly:admin:',
 					'desc'=>'后台业务模块'
 			),
 			'api'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>1,
-					'prefix'=>'aaz:api:',
+					'prefix'=>'jelly:api:',
 					'desc'=>'api仓库独有业务模块'
 			),
 			'pc'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>1,
-					'prefix'=>'aaz:pc:',
+					'prefix'=>'jelly:pc:',
 					'desc'=>'pc网站独有业务模块'
 			),
 			'h5'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
 					'database'=>1,
-					'prefix'=>'aaz:h5:',
+					'prefix'=>'jelly:h5:',
 					'desc'=>'h5触屏网站独有业务模块'
 			),
 

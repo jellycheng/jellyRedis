@@ -1,5 +1,5 @@
 <?php
-namespace Ananzu\Redis;
+namespace JellyRedis\Redis;
 /**
  * Author: jellycheng <42282367@qq.com>
  * Date: 2015/11/11
@@ -13,7 +13,7 @@ class Redis {
 	/**
      * 配置redis
      *
-		\Ananzu\Redis\Redis::setRedisConfig(array(
+		\JellyRedis\Redis\Redis::setRedisConfig(array(
 			'local'=>array(
 					'host'=>'10.59.72.31',
 					'port'=>'6379',
@@ -100,7 +100,7 @@ class Redis {
 
 
 	/**
-     * $res = \Ananzu\Redis\Redis::命令("group组名", "key名", "val值");
+     * $res = \JellyRedis\Redis\Redis::命令("group组名", "key名", "val值");
      * 只支持带key的命令或者不带参数的命令哦，
      * 不支持的KEYS ,BRPOPLPUSH，smove，zinterstore，echo,auth,PUBLISH 等命令
      */

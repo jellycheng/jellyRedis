@@ -1,5 +1,5 @@
 {
-    "name": "ananzu/redis",
+    "name": "JellyRedis/redis",
     "description": "",
     "keywords": [],
     "require": {
@@ -8,7 +8,7 @@
     "require-dev": {},
     "autoload": {
         "psr-4": {
-            "Ananzu\\Redis\\": "Redis/"
+            "JellyRedis\\Redis\\": "Redis/"
         },
         "files": [
         ]

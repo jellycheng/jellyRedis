@@ -1,5 +1,5 @@
 <?php
-namespace Ananzu\Redis;
+namespace JellyRedis\Redis;
 
 /**
  * Author: jellycheng <42282367@qq.com>
@@ -19,7 +19,7 @@ class RedisQueue {
 		if(!$val && strlen($val)==0) {
 			return '';
 		}
-		return \Ananzu\Redis\Redis::LPUSH($group, $subKey, $val);
+		return \JellyRedis\Redis\Redis::LPUSH($group, $subKey, $val);
 	}
 
 	/**
@@ -29,7 +29,7 @@ class RedisQueue {
 	 * @return mixed
 	 */
 	public static function getQueue($group, $subKey) {
-		return \Ananzu\Redis\Redis::RPOP($group, $subKey);
+		return \JellyRedis\Redis\Redis::RPOP($group, $subKey);
 	
 	}
 
@@ -40,6 +40,6 @@ class RedisQueue {
 	 * @return mixed
 	 */
 	public static function getQueueLen($group, $subKey) {
-		return \Ananzu\Redis\Redis::LLEN($group, $subKey);
+		return \JellyRedis\Redis\Redis::LLEN($group, $subKey);
 	}
 }
